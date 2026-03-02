@@ -23,7 +23,18 @@ public class Basics {
 		String response=given().log().all().queryParam("key", "qaclick123").header("Content-Type","application/json")
 		.body(payload.AddPlace()).when().post("maps/api/place/add/json")
 		.then().assertThat().statusCode(200).body("scope", equalTo("APP"))
+		//The Server header:
 		.header("server", "Apache/2.4.52 (Ubuntu)").extract().response().asString();
+		
+//Is automatically sent by the web server
+
+//Is part of Response Headers
+
+//Cannot be set from client side
+
+//Used sometimes for debugging
+
+//Often hidden in production for security reasons
 		
 		System.out.println(response);
 		JsonPath js=new JsonPath(response); //for parsing Json
@@ -43,6 +54,17 @@ public class Basics {
 		when().put("maps/api/place/update/json")
 		//equalTO Hamcrest-matchers
 		.then().assertThat().log().all().statusCode(200).body("msg", equalTo("Address successfully updated"));
+		
+		//Get Place
+		
+		String getPlaceResponse=	given().log().all().queryParam("key", "qaclick123")
+			.queryParam("place_id",placeId)
+			.when().get("maps/api/place/get/json")
+			.then().assertThat().log().all().statusCode(200).extract().response().asString();
+		JsonPath js1=ReUsableMethods.rawToJson(getPlaceResponse);
+		String actualAddress =js1.getString("address");
+		System.out.println(actualAddress);
+		Assert.assertEquals(actualAddress, "Pacific ocean");
 		
 	
 	
