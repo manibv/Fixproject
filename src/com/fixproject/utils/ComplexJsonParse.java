@@ -1,3 +1,4 @@
+package com.fixproject.utils;
 import files.payload;
 import io.restassured.path.json.JsonPath;
 
