@@ -5,6 +5,9 @@ import io.restassured.path.json.JsonPath;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import java.io.IOException;
+
+
 import org.testng.Assert;
 
 import files.ReUsableMethods;
@@ -12,7 +15,7 @@ import files.payload;
 
 public class Basics {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
 // validate if Add Place API is workimg as expected 
 		//Add place-> Update Place with New Address -> Get Place to validate if New address is present in response
@@ -20,9 +23,14 @@ public class Basics {
 		//given - all input details 
 		//when - Submit the API -resource,http method
 		//Then - validate the response
+		//Content of the file to string->Contents of file can convert into Byte--> Byte to string
 		RestAssured.baseURI= "https://rahulshettyacademy.com";
 		String response=given().log().all().queryParam("key", "qaclick123").header("Content-Type","application/json")
-		.body(payload.AddPlace()).when().post("maps/api/place/add/json")
+		.body(payload.AddPlace())
+				//For using files
+		//.body(Files.readAllBytes(Paths.get("C:\\Program Files\\Notepad++")))
+				//.body(Files.readAllBytes(Paths.get("")))
+		.when().post("maps/api/place/add/json")
 		.then().assertThat().statusCode(200).body("scope", equalTo("APP"))
 		//The Server header:
 		.header("server", "Apache/2.4.52 (Ubuntu)").extract().response().asString();

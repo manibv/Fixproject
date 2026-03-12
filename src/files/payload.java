@@ -66,6 +66,29 @@ public class payload {
 		
 		
 }
+	//public static String  Addbook(){
+	public static String  Addbook(String isbn, String aisle) {
+		//String payload="{\r\n"
+		//		+ "\r\n"
+		//		+ "\"name\":\"Learn Appium Automation with Java\",\r\n"
+		//		+ "\"isbn\":\"bcd\",\r\n"
+		//		+ "\"aisle\":\"2327\",\r\n"
+		//		+ "\"author\":\"John foe\"\r\n"
+		//		+ "}\r\n"
+		//		+ "";
+		// to insert a variable we First terminate the string.isbn and isle..+ concatenation operator
+		String payload="{\r\n"
+				+ "\r\n"
+				+ "\"name\":\"Learn Appium Automation with Java\",\r\n"
+				+ "\"isbn\":\""+isbn+"\",\r\n"
+				+ "\"aisle\":\""+aisle+"\",\r\n"
+				+ "\"author\":\"John foe\"\r\n"
+				+ "}\r\n"
+				+ "";
+		return payload;
+		
+		
+	}
 	
 	
 }
