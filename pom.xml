@@ -21,7 +21,14 @@
     <groupId>io.rest-assured</groupId>
     <artifactId>rest-assured</artifactId>
     <version>6.0.0</version>
- 
+    
+</dependency>
+
+<!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.21.1</version>
 </dependency>
 <!-- Fix SLF4J warning (simple logger) -->
 <dependency>
