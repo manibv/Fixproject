@@ -2,9 +2,12 @@ package com.fixproject.utils;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import pojo.Api;
 import pojo.GetCourse;
 
 import static io.restassured.RestAssured.*;
+
+import java.util.List;
 
 public class oAuthTest {
 
@@ -35,8 +38,18 @@ public class oAuthTest {
  //System.out.println(response2);
  System.out.println(gc.getLinkedIn());
  System.out.println(gc.getInstructor());
-  
-  
+ //getter method-getcourses then get api
+ //There are list of APIs- getting first one
+ System.out.println(gc.getCourses().getApi().get(1).getCourseTitle());
+  //Scan the API and get soupUI web services testing course price -in the List of API courses
+ List<Api> apiCourses=gc.getCourses().getApi();
+ //iteration
+ for(int i=0;i<apiCourses.size();i++)
+ {
+  if(apiCourses.get(i).getCourseTitle().equalsIgnoreCase("SoapUI Webservices testing"))
+		  {
+	  System.out.println(apiCourses.get(i).getPrice());
+		  }
 	}
 
-}
+	}}
