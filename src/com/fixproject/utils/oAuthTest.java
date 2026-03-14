@@ -7,12 +7,18 @@ import pojo.GetCourse;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.testng.Assert;
 
 public class oAuthTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		//declare array of strings- Building expected titles so that we can compare later form json response with an assertion
+		String[] courseTitles ={"Selenium Webdriver Java","Cypress","Protractot"};
 		
   String response=   given()
 .formParam("client_id","692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
@@ -51,11 +57,22 @@ public class oAuthTest {
 	  System.out.println(apiCourses.get(i).getPrice());
 		  }
 	}
-//Get Courses names of webAutomation course list
+//Get all Courses names of webAutomation course list
+ //For a dynamic arrays(if not sure about the size) we use Arraylist and create object -as all are string adding the string
+ ArrayList<String> a=new ArrayList<String>();
  List<pojo.WebAutomation> w=gc.getCourses().getWebAutomation();
+ 
  for(int j=0;j<w.size();j++)
  {
-	 System.out.println(w.get(j).getCourseTitle());
+	// System.out.println(w.get(j).getCourseTitle());
+	 
+	a.add(w.get(j).getCourseTitle());
  }
+ //For comparing Array and Array list- for that converting courseTitles[] Array to Arraylist
+ List<String> expectedList= Arrays.asList(courseTitles);
+ //TestNG assertion-to assert
+ Assert.assertTrue(a.equals(expectedList));
+ 
  }
 	}
+//To check the course titles with expected course titles- for this we need to declare array of strings..above.
