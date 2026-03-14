@@ -2,6 +2,7 @@ package com.fixproject.utils;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import pojo.GetCourse;
 
 import static io.restassured.RestAssured.*;
 
@@ -22,12 +23,18 @@ public class oAuthTest {
   JsonPath js= new JsonPath(response);
  String accessToken= js.getString("access_token");
  
- String response2=
+ //String response2=
+ //Using Getcourse object gc
+ GetCourse gc=
  given()
  .queryParam("access_token",accessToken)
  .when().log().all()
- .get("https://rahulshettyacademy.com/oauthapi/getCourseDetails").asString();
- System.out.println(response2);
+// .get("https://rahulshettyacademy.com/oauthapi/getCourseDetails").asString();
+ // As we are using POJO classes deserialization-> below
+ .get("https://rahulshettyacademy.com/oauthapi/getCourseDetails").as(GetCourse.class);
+ //System.out.println(response2);
+ System.out.println(gc.getLinkedIn());
+ System.out.println(gc.getInstructor());
   
   
 	}
