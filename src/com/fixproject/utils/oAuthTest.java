@@ -72,6 +72,7 @@ public class oAuthTest {
  List<String> expectedList= Arrays.asList(courseTitles);
  //TestNG assertion-to assert
  Assert.assertTrue(a.equals(expectedList));
+ //Courses list have spell mistakes so may see true/false error.
  
  }
 	}
