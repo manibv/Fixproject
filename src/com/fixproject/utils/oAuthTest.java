@@ -51,5 +51,11 @@ public class oAuthTest {
 	  System.out.println(apiCourses.get(i).getPrice());
 		  }
 	}
-
-	}}
+//Get Courses names of webAutomation course list
+ List<pojo.WebAutomation> w=gc.getCourses().getWebAutomation();
+ for(int j=0;j<w.size();j++)
+ {
+	 System.out.println(w.get(j).getCourseTitle());
+ }
+ }
+	}
