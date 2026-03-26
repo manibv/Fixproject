@@ -73,7 +73,7 @@ public class Basics {
 		JsonPath js1=ReUsableMethods.rawToJson(getPlaceResponse);
 		String actualAddress =js1.getString("address");
 		System.out.println(actualAddress);
-		Assert.assertEquals(actualAddress, "Pacific ocean"); //this address is in correct should be "Summer Walk, Africa".
+		Assert.assertEquals(actualAddress, "Summer Walk, Africa"); //this address is in correct should be "Summer Walk, Africa".
 		
 	
 	
